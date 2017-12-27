@@ -25,7 +25,7 @@ SECRET_KEY = 'tdxo^ed*e=-ab*4ws2ipin1&#e8yp*)9mqcrsc8+9jpxj5#u8='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'undang.twpower.me', '182.162.104.151']
 
 
 # Application definition
