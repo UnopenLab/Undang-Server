@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.http import HttpResponse
 from django.shortcuts import render
 import urllib.request
@@ -20,4 +22,4 @@ def get_temperatures_by_json(request):
         for row in rows:
             cols = row.find_all('td')
             temperatures.append({cols[0].text: cols[1].text})
-        return HttpResponse(json.dumps(temperatures, ensure_ascii=False), content_type='application/json')
+        return HttpResponse(json.dumps(temperatures, ensure_ascii=False), content_type='application/json; charset=utf-8')
