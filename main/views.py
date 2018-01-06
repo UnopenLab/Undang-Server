@@ -18,8 +18,8 @@ def get_temperatures_by_json(request):
         rows = table[1].find_all('tr')
         rows.pop(0)
 
-        temperatures = []
+        temperatures = {}
         for row in rows:
             cols = row.find_all('td')
-            temperatures.append({cols[0].text: cols[1].text})
+            temperatures[cols[0].text] = cols[1].text
         return HttpResponse(json.dumps(temperatures, ensure_ascii=False), content_type='application/json; charset=utf-8')
