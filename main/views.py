@@ -26,3 +26,7 @@ def get_temperatures_by_json(request):
             else:
                 temperatures[cols[0].text] = cols[1].text
         return HttpResponse(json.dumps(temperatures, ensure_ascii=False), content_type='application/json; charset=utf-8')
+
+
+def post_index(request):
+    return render(request, 'main/index.html', {})
