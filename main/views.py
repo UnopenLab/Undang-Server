@@ -13,10 +13,10 @@ def get_temperatures_by_json(request):
     with urllib.request.urlopen('http://www.koreawqi.go.kr/wQSCHomeLayout_D.wq?action_type=T') as response:
         html = response.read()
         soup = BeautifulSoup(html, 'html.parser')
-        div_cont1 = soup.find("div", {"class": "cont1"})
-        table = div_cont1.find_all('table', {"class": "table_01"})
-        rows = table[1].find_all('tr')
-        rows.pop(0)
+        div_timetable = soup.find("div", {"class": "timetable"})
+        div_layer_btn1_r1 = div_timetable.find('div', {"id": "div_layer_btn1_r1"})
+        table = div_layer_btn1_r1.find('table')
+        rows = table.find_all('tr')
 
         temperatures = {}
         for row in rows:

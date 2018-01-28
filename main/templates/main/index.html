@@ -1,71 +1,88 @@
-<!-- Tutorial URL: http://sixrevisions.com/css/responsive-background-image/ -->
 <!doctype html>
 {% load staticfiles %}
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Responsive Full Background Image</title>
+  <meta charset="utf-8">
+  <title>Responsive Full Background Image</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="Unopen-lab">
-  <!--[if lt IE 9]>
-  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
 
-  <!-- Not required: presentational-only.css only contains CSS for prettifying the demo -->
   <link rel="stylesheet" href="{% static 'css/presentational-only.css' %}">
-
-  <!-- responsive-full-background-image.css stylesheet contains the code you want -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://dev.kakao.com/sdk/js/kakao-1.2.0.min.js"></script>
+  <script src="{% static 'js/share.js' %}"></script>
+
   <script type="text/javascript" language="javascript">
- 
+
     $(document).ready(function(){
-         
-        console.log("Start");
 
-        var date = new Date();
-        var month = date.getMonth();
-        var day = date.getDate();
-        var days = ["일", "월", "화", "수", "목", "금", "토"];
+      console.log("Start");
+      Kakao.init('8939bce6fbc07d81cfffa7a4e5d1decc');
 
-         document.getElementById('date').innerHTML = (month+1)+"월 "+day+"일 "+days[date.getDay()]+"요일";
-         
-        $.ajax({
-             
-            type : "GET",
-            url : "/temperatures",
-            dataType : "json",
-            error : function(){
-                document.getElementById('temperature').value="통신오류";
-            },
-            success : function(data){
-                console.log("통신데이터 값 : " + JSON.stringify(data));
-                var obj=JSON.parse(JSON.stringify(data));
-                document.getElementById('temperature').innerHTML=obj["구리"];
-            }
-             
-        });
-         
- 
+      var date = new Date();
+      var month = date.getMonth();
+      var day = date.getDate();
+      var days = ["일", "월", "화", "수", "목", "금", "토"];
+
+      document.getElementById('date').innerHTML = (month+1)+"월 "+day+"일 "+days[date.getDay()]+"요일";
+
+      $.ajax({
+
+        type : "GET",
+        url : "/temperatures",
+        dataType : "json",
+        error : function(){
+          document.getElementById('temperature').value="통신오류";
+        },
+        success : function(data){
+          console.log("통신데이터 값 : " + JSON.stringify(data));
+          var obj=JSON.parse(JSON.stringify(data));
+          document.getElementById('temperature').innerHTML=obj["구리"];
+        }
+
+      });
+
+
     });
- 
+
   </script>
 </head>
 <body>
-  <script>
+  <div class="dim-layer">
+    <div class="dim-background"></div>
+    <div class="pop-layer">
+      <div class="close-share">
+        <img src="{% static 'images/btn-x.png' %}" srcset="{% static 'images/btn-x@2x.png' %} 2x,{% static 'images/btn-x@3x.png' %} 3x">
+      </div>
+      <div class="share-item-list">
+        <div class="share-item">
+          <img src="{% static 'images/ic-fb.png' %}" srcset="{% static 'images/ic-fb@2x.png' %} 2x, {% static 'images/ic-fb@3x.png' %} 3x">
+          <p>페이스북</p>
+        </div>
+        <div class="share-item">
+          <img src="{% static 'images/ic-kakao.png' %}" srcset="{% static 'images/ic-kakao@2x.png' %} 2x, {% static 'images/ic-kakao@3x.png' %} 3x" id="share_kakao">
+          <p>카카오톡</p>
+        </div>
+        <div class="share-item">
+          <img src="{% static 'images/ic-url.png' %}" srcset="{% static 'images/ic-url@2x.png' %} 2x, {% static 'images/ic-url@3x.png' %} 3x">
+          <p>URL</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="share">
+    <img src="{% static 'images/ic-share.png' %}" srcset="{% static 'images/ic-share@2x.png' %} 2x,{% static 'images/ic-share@3x.png' %} 3x">
+  </div>
 
-  </script>
-  <header class="container">
-    <section class="content">
-      
-      <h2 id="date">12월 21일 목요일</h2>
-      <h1>지금 한강은</h1>
-      <image src="{% static 'images/line.jpg' %}"/>
-      <p></p>
-      <h3 id="temperature" class="inline"></h3>
-      <h4 class="inline">℃</h4>
+  <div class="main">
+    <h2 id="date">12월 21일 목요일</h2>
+    <h1>지금 한강은</h1>
+    <div class="line"></div>
+    <h3 id="temperature" class="inline"></h3>
+    <h4 class="inline">℃</h4>
+  </div>
 
-    </section>
-  </header>
 </body>
 </html>
