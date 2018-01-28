@@ -12,6 +12,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://dev.kakao.com/sdk/js/kakao-1.2.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
   <script src="{% static 'js/share.js' %}"></script>
 
   <script type="text/javascript" language="javascript">
@@ -44,6 +45,19 @@
 
       });
 
+      var imgs = document.querySelectorAll('img');
+      var clip = new Clipboard(imgs);
+
+      clip.on('success', function(e) {
+          console.log("Success");
+
+          $('.popup-box').fadeIn();
+          $('.popup-box').delay(1000).fadeOut();
+          var selection = window.getSelection();
+          selection.removeAllRanges();
+
+        });
+
 
     });
 
@@ -66,7 +80,7 @@
           <p>카카오톡</p>
         </div>
         <div class="share-item">
-          <img src="{% static 'images/ic-url.png' %}" srcset="{% static 'images/ic-url@2x.png' %} 2x, {% static 'images/ic-url@3x.png' %} 3x">
+          <img data-clipboard-target="#temperature" src="{% static 'images/ic-url.png' %}" srcset="{% static 'images/ic-url@2x.png' %} 2x, {% static 'images/ic-url@3x.png' %} 3x" id="share_link">
           <p>URL</p>
         </div>
       </div>

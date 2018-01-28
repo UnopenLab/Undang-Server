@@ -18,6 +18,12 @@ function layer_popup() {
     return false;
   });
 
+  $('#share_link').click(function() {
+    $('.share').fadeIn();
+    $('.dim-layer').fadeOut();
+    return false;
+  });
+
   $('.close-share').click(function() {
     $('.share').fadeIn();
     $('.dim-layer').fadeOut();
