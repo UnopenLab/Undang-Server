@@ -20,11 +20,12 @@ def get_temperatures_by_json(request):
 
         temperatures = {}
         for row in rows:
+            river_name = row.find('th').text
             cols = row.find_all('td')
-            if cols[1].text == u'\xa0':
-                temperatures[cols[0].text] = '모르겠'
+            if cols[0].text == u'\xa0':
+                temperatures[river_name] = '모르겠'
             else:
-                temperatures[cols[0].text] = cols[1].text
+                temperatures[river_name] = cols[0].text
         return HttpResponse(json.dumps(temperatures, ensure_ascii=False), content_type='application/json; charset=utf-8')
 
 
