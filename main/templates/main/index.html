@@ -3,17 +3,38 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Responsive Full Background Image</title>
+  <title>Undang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="Unopen-lab">
+
+     <!-- Open Graph tags to customize link previews.
+    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+  <meta property="fb:app_id" content="190548778359119" />
+  <meta property="og:url"           content="http://undang.twpower.me:6231" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="[Undang] 지금 한강은" />
+  <meta property="og:description"   content="수온 정보를 알려드립니다." />
+  <!-- <meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" /> -->
+
 
   <link rel="stylesheet" href="{% static 'css/presentational-only.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://dev.kakao.com/sdk/js/kakao-1.2.0.min.js"></script>
+  <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '190548778359119',
+      xfbml      : true,
+      version    : 'v2.12'
+    });
+    FB.AppEvents.logPageView();
+  };
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
   <script src="{% static 'js/share.js' %}"></script>
+
 
   <script type="text/javascript" language="javascript">
 
@@ -72,7 +93,7 @@
       </div>
       <div class="share-item-list">
         <div class="share-item">
-          <img src="{% static 'images/ic-fb.png' %}" srcset="{% static 'images/ic-fb@2x.png' %} 2x, {% static 'images/ic-fb@3x.png' %} 3x">
+          <img src="{% static 'images/ic-fb.png' %}" srcset="{% static 'images/ic-fb@2x.png' %} 2x, {% static 'images/ic-fb@3x.png' %} 3x" class="facebook-share" data-js="facebook-share">
           <p>페이스북</p>
         </div>
         <div class="share-item">
@@ -97,6 +118,26 @@
     <h3 id="temperature" class="inline"></h3>
     <h4 class="inline">℃</h4>
   </div>
+
+  <div id="fb-root"></div>
+  <script>   
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.12&appId=190548778359119&autoLogAppEvents=1';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  var facebookShare = document.querySelector('[data-js="facebook-share"]');
+  facebookShare.onclick = function(e) {
+    e.preventDefault();
+    var facebookWindow = window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fundang.twpower.me%3A6231%2F&amp;src=sdkpreparse', 'facebook-popup', 'height=350,width=600');
+    if(facebookWindow.focus) { facebookWindow.focus(); }
+      return false;
+  }
+  </script>
+
 
 </body>
 </html>
