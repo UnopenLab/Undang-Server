@@ -1,32 +1,60 @@
-$(document).ready(function(){
-  $('.share').click(function() {
-    layer_popup();
-  });
+$(document).ready(function () {
+    $('.share').click(function () {
+        layer_popup();
+    });
 });
 
 function layer_popup() {
-  $('.share').fadeOut();
-  $('.dim-layer').fadeIn();
+    $('.share').fadeOut();
+    $('.dim-layer').fadeIn();
 
-  $('#share_kakao').click(function() {
-    Kakao.Link.sendTalkLink({
-      label: '지금 한강은 모르겠도'
-    }
-  );
-    $('.share').fadeIn();
-    $('.dim-layer').fadeOut();
-    return false;
-  });
+    $('#share_kakao').click(function () {
 
-  $('#share_link').click(function() {
-    $('.share').fadeIn();
-    $('.dim-layer').fadeOut();
-    return false;
-  });
+        console.log('Clicked');
 
-  $('.close-share').click(function() {
-    $('.share').fadeIn();
-    $('.dim-layer').fadeOut();
-    return false;
-  });
+        var date = new Date();
+        var month = date.getMonth();
+        var day = date.getDate();
+        var days = ["일", "월", "화", "수", "목", "금", "토"];
+        var place = '한강';
+
+        var label_text = '[Undang]' + month + '월 '
+            + day + '일 '
+            + '지금 ' + place + '은 '
+            + document.getElementById('temperature').textContent + '℃'
+        /*
+              Kakao.Link.sendTalkLink({
+              label: label_text + '\n' + 'https://www.naver.com'
+              });
+        */
+
+        Kakao.Link.sendTalkLink({
+            label: label_text,
+            image: {
+                src: 'http://undang.twpower.me/images/kakaotalk-share.png',
+                width: '154',
+                height: '154'
+            },
+            appButton : {
+                text : "앱으로 가기",
+                webUrl : "https://play.google.com/store/apps/details?id=com.unopenlab.iamalarm"
+            }
+        });
+
+        $('.share').fadeIn();
+        $('.dim-layer').fadeOut();
+        return false;
+    });
+
+    $('#share_link').click(function () {
+        $('.share').fadeIn();
+        $('.dim-layer').fadeOut();
+        return false;
+    });
+
+    $('.close-share').click(function () {
+        $('.share').fadeIn();
+        $('.dim-layer').fadeOut();
+        return false;
+    });
 }
