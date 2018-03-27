@@ -13,32 +13,18 @@ function layer_popup() {
         console.log('Clicked');
 
         var date = new Date();
-        var month = date.getMonth();
+        var month = date.getMonth()+1;
         var day = date.getDate();
         var days = ["일", "월", "화", "수", "목", "금", "토"];
         var place = '한강';
 
-        var label_text = '[Undang]' + month + '월 '
+        var share_text = '[Undang]' + month + '월 '
             + day + '일 '
             + '지금 ' + place + '은 '
-            + document.getElementById('temperature').textContent + '℃'
-        /*
-              Kakao.Link.sendTalkLink({
-              label: label_text + '\n' + 'https://www.naver.com'
-              });
-        */
+            + document.getElementById('temperature').textContent + '℃';
 
         Kakao.Link.sendTalkLink({
-            label: label_text,
-            image: {
-                src: 'http://undang.twpower.me/images/kakaotalk-share.png',
-                width: '154',
-                height: '154'
-            },
-            appButton : {
-                text : "앱으로 가기",
-                webUrl : "https://play.google.com/store/apps/details?id=com.unopenlab.iamalarm"
-            }
+            label: share_text
         });
 
         $('.share').fadeIn();
