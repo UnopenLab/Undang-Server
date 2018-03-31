@@ -31,8 +31,24 @@
       version    : 'v2.12'
     });
     FB.AppEvents.logPageView();
-  };
+    };
+
+    (
+      function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+
+        fjs.parentNode.insertBefore(js, fjs);
+      }
+      (document, 'script', 'facebook-jssdk')
+    );
   </script>
+
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
   <script src="{% static 'js/share.js' %}"></script>
 
@@ -120,27 +136,6 @@
     <h4 class="inline">℃</h4>
   </div>
 
-  <div id="fb-root"></div>
-  <script>   
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.12&appId=190548778359119&autoLogAppEvents=1';
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-
-  var facebookShare = document.querySelector('[data-js="facebook-share"]');
-  facebookShare.onclick = function(e) {
-    e.preventDefault();
-    var titleText = document.getElementById("temperature-info").textContent;
-    document.getElementById("fb-title").setAttribute("content", titleText);
- 
-    var facebookWindow = window.open('https://www.facebook.com/sharer.php?s=100&p[url]=http%3A%2F%2Fundang.twpower.me%3A6231&p[images][0]=%7B%25%20static%20%27images%2Furl-largelink-preview.png%27%20%25%7D&p[title]=titleText&p[summary]=%EC%88%98%EC%98%A8%20%EC%A0%95%EB%B3%B4%EB%A5%BC%20%EC%95%8C%EB%A0%A4%EB%93%9C%EB%A6%BD%EB%8B%88%EB%8B%A4.', 'facebook-popup', 'height=350,width=600');
-    if(facebookWindow.focus) { facebookWindow.focus(); }
-      return false;
-  }
-  </script>
 
 
 </body>
