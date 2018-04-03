@@ -50,7 +50,7 @@ function layer_popup() {
         //[Undang]2월 25일 지금 한강은 모르겠℃
 
         var date = new Date();
-        var month = date.getMonth();
+        var month = date.getMonth()+1;
         var day = date.getDate();
         var days = ["일", "월", "화", "수", "목", "금", "토"];
         var place = '한강';
