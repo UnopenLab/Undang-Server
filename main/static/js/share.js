@@ -32,6 +32,37 @@ function layer_popup() {
         return false;
     });
 
+    $('#share_facebook').click(function () {
+        //[Undang]2월 25일 지금 한강은 모르겠℃
+
+        var date = new Date();
+        var month = date.getMonth()+1;
+        var day = date.getDate();
+        var days = ["일", "월", "화", "수", "목", "금", "토"];
+        var place = '한강';
+        var label_text = month + '월 '
+            + day + '일 '
+            + '지금 ' + place + '은 '
+            + document.getElementById('temperature').textContent + '℃'
+
+        FB.ui({
+            method: 'share_open_graph',
+            action_type: 'og.shares',
+            action_properties: JSON.stringify({
+                object: {
+                    'og:url': 'https://undang.twpower.me',
+                    'og:title': '[Undang]',
+                    'og:description': label_text,
+                    'og:image': 'http://undang.twpower.me/images/url-largelink-preview.png',
+                }
+            })
+        }, function(response){
+          
+        });
+        $('.share').fadeIn();
+        $('.dim-layer').fadeOut();
+    });
+
     $('#share_link').click(function () {
         $('.share').fadeIn();
         $('.dim-layer').fadeOut();
