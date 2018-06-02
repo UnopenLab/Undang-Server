@@ -4,5 +4,5 @@ python:
 install:
     pip install -r requirements.txt
 script: pytest
- notifications:
+notifications:
     slack: unopenlab:kV0oO6ldjXx3PlGrF8m9KBWW
