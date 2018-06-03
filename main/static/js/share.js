@@ -13,7 +13,7 @@ function layer_popup() {
         console.log('Clicked');
 
         var date = new Date();
-        var month = date.getMonth()+1;
+        var month = date.getMonth() + 1;
         var day = date.getDate();
         var days = ["일", "월", "화", "수", "목", "금", "토"];
         var place = '한강';
@@ -36,7 +36,7 @@ function layer_popup() {
         //[Undang]2월 25일 지금 한강은 모르겠℃
 
         var date = new Date();
-        var month = date.getMonth()+1;
+        var month = date.getMonth() + 1;
         var day = date.getDate();
         var days = ["일", "월", "화", "수", "목", "금", "토"];
         var place = '한강';
@@ -56,8 +56,8 @@ function layer_popup() {
                     'og:image': 'http://undang.twpower.me/images/url-largelink-preview.png',
                 }
             })
-        }, function(response){
-          
+        }, function (response) {
+
         });
         $('.share').fadeIn();
         $('.dim-layer').fadeOut();
