@@ -4,6 +4,20 @@ $(document).ready(function () {
     });
 });
 
+var share_text = function () {
+    var date = new Date();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var days = ["일", "월", "화", "수", "목", "금", "토"];
+    var place = '한강';
+    var share_text = '[Undang]' + month + '월 '
+    + day + '일 '
+    + '지금 ' + place + '은 '
+    + document.getElementById('temperature').textContent + '℃';
+
+    return share_text;
+};
+
 function layer_popup() {
     $('.share').fadeOut();
     $('.dim-layer').fadeIn();
@@ -33,8 +47,7 @@ function layer_popup() {
     });
 
     $('#share_facebook').click(function () {
-        //[Undang]2월 25일 지금 한강은 모르겠℃
-
+       
         var date = new Date();
         var month = date.getMonth() + 1;
         var day = date.getDate();
