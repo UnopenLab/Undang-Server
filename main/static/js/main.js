@@ -11,13 +11,13 @@ window.fbAsyncInit = function () {
 };
 
 (
-    function (document, script, id) {
-        var js, fjs = document.getElementsByTagName(scripts)[0];
+    function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
 
-        if (document.getElementById(id)) {
+        if (d.getElementById(id)) {
             return;
         }
-        js = document.createElement(script);
+        js = d.createElement(s);
         js.id = id;
         js.src = "https://connect.facebook.net/en_US/sdk.js";
 
@@ -72,6 +72,7 @@ $(document).ready(function () {
         selection.removeAllRanges();
 
     });
+    
 
 
 });
