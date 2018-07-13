@@ -38,7 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'django_crontab',
     'main',
+]
+
+CRONJOBS = [
+    ('*/30 * * * *', 'main.cron.get_temperatures_and_save_to_db')
 ]
 
 MIDDLEWARE = [
