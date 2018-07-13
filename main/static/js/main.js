@@ -11,13 +11,13 @@ window.fbAsyncInit = function () {
 };
 
 (
-    function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
+    function (document, script, id) {
+        var js, fjs = document.getElementsByTagName(scripts)[0];
 
-        if (d.getElementById(id)) {
+        if (document.getElementById(id)) {
             return;
         }
-        js = d.createElement(s);
+        js = document.createElement(script);
         js.id = id;
         js.src = "https://connect.facebook.net/en_US/sdk.js";
 
