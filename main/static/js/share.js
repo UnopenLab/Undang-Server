@@ -4,59 +4,29 @@ $(document).ready(function () {
     });
 });
 
-var share_text = function () {
-    var date = new Date();
-    var month = date.getMonth() + 1;
-    var day = date.getDate();
-    var days = ["일", "월", "화", "수", "목", "금", "토"];
-    var place = '한강';
-    var share_text = '[Undang]' + month + '월 '
-    + day + '일 '
-    + '지금 ' + place + '은 '
-    + document.getElementById('temperature').textContent + '℃';
-
-    return share_text;
-};
-
 function layer_popup() {
+
     $('.share').fadeOut();
     $('.dim-layer').fadeIn();
 
     $('#share_kakao').click(function () {
 
-        console.log('Clicked');
-
-        var date = new Date();
-        var month = date.getMonth() + 1;
-        var day = date.getDate();
-        var days = ["일", "월", "화", "수", "목", "금", "토"];
-        var place = '한강';
-
-        var share_text = '[Undang]' + month + '월 '
-            + day + '일 '
-            + '지금 ' + place + '은 '
-            + document.getElementById('temperature').textContent + '℃';
+        var label_text = document.getElementById('temperature-info');
+        var converted = (label_text.innerText || label_text.textContent).replace(/\s+/g, ' ');
 
         Kakao.Link.sendTalkLink({
-            label: share_text
+            label: converted
         });
 
         $('.share').fadeIn();
         $('.dim-layer').fadeOut();
         return false;
     });
-
     $('#share_facebook').click(function () {
-       
-        var date = new Date();
-        var month = date.getMonth() + 1;
-        var day = date.getDate();
-        var days = ["일", "월", "화", "수", "목", "금", "토"];
-        var place = '한강';
-        var label_text = month + '월 '
-            + day + '일 '
-            + '지금 ' + place + '은 '
-            + document.getElementById('temperature').textContent + '℃'
+
+        var label_text = document.getElementById('temperature-info');
+        var converted = (label_text.innerText || label_text.textContent).replace(/\s+/g, ' ');
+     
 
         FB.ui({
             method: 'share_open_graph',
@@ -65,7 +35,7 @@ function layer_popup() {
                 object: {
                     'og:url': 'https://undang.twpower.me',
                     'og:title': '[Undang]',
-                    'og:description': label_text,
+                    'og:description': converted,
                     'og:image': 'http://undang.twpower.me/images/url-largelink-preview.png',
                 }
             })
